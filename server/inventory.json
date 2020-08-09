@@ -1,0 +1,53 @@
+{
+  "user": [
+    {
+      "name": "test",
+      "email": "dfd@g.cmc",
+      "password": "1234",
+      "mobile": "3458734656",
+      "id": 1
+    },
+    {
+      "name": "kirti",
+      "email": "kirti@gmail.com",
+      "password": "12345678",
+      "mobile": "3458734656",
+      "id": 2
+    },
+    {
+      "name": "kirti",
+      "email": "ewae@f.v",
+      "password": "13232",
+      "mobile": "3458734656",
+      "id": 3
+    }
+  ],
+  "product": [
+    {
+      "name": "test99",
+      "quantity": "42",
+      "price": "9000",
+      "description": "i am test product",
+      "category": "test4",
+      "image": "inv.jpeg",
+      "id": 3
+    },
+    {
+      "name": "mobile",
+      "quantity": "12",
+      "price": "1200",
+      "description": "mobile test",
+      "category": "test4",
+      "id": 4
+    },
+    {
+      "name": "laptop",
+      "quantity": "55",
+      "price": "12347",
+      "description": "laptop test",
+      "category": "test5",
+      "image": "inv.jpeg",
+      "id": 5
+    }
+  ]
+}
