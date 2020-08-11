@@ -24,7 +24,7 @@ const PRODUCT_ERROR = "Please try again later."
 class AddEditProductComponent extends React.Component {
     constructor(props) {
         super(props);
-        if (this.props.location.state !== null && this.props.location.state !== undefined) {
+       if (this.props.location.state !== null && this.props.location.state !== undefined) {
             var data = this.props.location.state.product || ''
             this.state = {
                 id: data.id || '',
@@ -32,9 +32,9 @@ class AddEditProductComponent extends React.Component {
                 description: data.description || '',
                 quantity: data.quantity || '',
                 category: data.category || '',
-                productImage: data.image || '',
+                productImage: data.image || [],
                 price: data.price || '',
-                productError: false,
+                isProductError: false,
                 isEditing: true
             }
         } else {
@@ -44,8 +44,8 @@ class AddEditProductComponent extends React.Component {
                 description: '',
                 quantity: '',
                 category: '',
-                productImage: '',
-                productError: false,
+                productImage: [],
+                isProductError: false,
                 isEditing: false,
                 price: ''
             }
@@ -63,7 +63,14 @@ class AddEditProductComponent extends React.Component {
         this.setState({ quantity: event.target.value })
     }
     handleProductImageChange = (event) => {
-        this.setState({ productImage: event.target.value.substr(12) })
+        let files = event.target.files;
+        let prodArr = [];
+        for (let i = 0; i < files.length; i++) {
+            const element = files[i];
+            prodArr.push(element.name);
+        }
+        console.log(prodArr)
+        this.setState({ productImage: prodArr })
     }
     handleProductCategoryChange = (event) => {
         this.setState({ category: event.target.value })
@@ -104,12 +111,12 @@ class AddEditProductComponent extends React.Component {
                 if (response.status === 201)
                     this.props.history.push('/product_list')
                 else
-                    this.setState({ productError: true })
+                    this.setState({ isProductError: true })
 
             })
             .catch(error => {
                 console.log(error)
-                this.setState({ productError: true })
+                this.setState({ isProductError: true })
             })
     }
 
@@ -121,11 +128,11 @@ class AddEditProductComponent extends React.Component {
                 if (response.status === 200)
                     this.props.history.push('/product_list')
                 else
-                    this.setState({ productError: true })
+                    this.setState({ isProductError: true })
             })
             .catch(error => {
                 console.log(error)
-                this.setState({ productError: true })
+                this.setState({ isProductError: true })
             })
     }
     render() {
@@ -197,13 +204,13 @@ class AddEditProductComponent extends React.Component {
                         <Col>
                             <Form.Group controlId="formProductImage">
                                 <Form.Label>Product Image</Form.Label>
-                                <Form.File onChange={this.handleProductImageChange} />
+                                <Form.File onChange={this.handleProductImageChange} multiple/>
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
-                            <Alert variant="danger" className={!this.state.productError ? 'hidden' : ''}>
+                            <Alert variant="danger" className={!this.state.isProductError ? 'hidden' : ''}>
                                 {PRODUCT_ERROR}
                             </Alert>
                         </Col>

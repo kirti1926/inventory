@@ -54,10 +54,10 @@ class SignupComponent extends React.Component {
             name: '',
             email: '',
             mobile: '',
-            hiddenPassword: true,
+            isHiddenPassword: true,
             password: '',
-            signupSuccess: false,
-            signupError: false,
+            isSignupSuccess: false,
+            isSignupError: false,
             regexp: /^[0-9\b]+$/,
             nameerror : '',
             mobileerror : ''
@@ -92,7 +92,7 @@ class SignupComponent extends React.Component {
         }
     }
     togglePassword = (e) => {
-        this.setState({ hiddenPassword: !this.state.hiddenPassword });
+        this.setState({ isHiddenPassword: !this.state.isHiddenPassword });
     }
 
     submitSignUpRequest = (event) => {
@@ -114,8 +114,8 @@ class SignupComponent extends React.Component {
                 .then(response => {
                     if (response.status === 201) {
                         this.setState({
-                            signupSuccess: true,
-                            signupError: false,
+                            isSignupSuccess: true,
+                            isSignupError: false,
                             signupMessage: response.statusText
                         })
                         cookie.save('user_name', this.state.name)
@@ -129,8 +129,8 @@ class SignupComponent extends React.Component {
                         errorResponse = SIGNUP_ERROR
 
                     this.setState({
-                        signupError: true,
-                        signupSuccess: false,
+                        isSignupError: true,
+                        isSignupSuccess: false,
                         errorMessage: errorResponse
                     })
                 })
@@ -138,10 +138,10 @@ class SignupComponent extends React.Component {
     }
 
     render() {
-        const hideiconstyle = this.state.hiddenPassword ? { display: 'none' } : {};
-        const showiconstyle = !this.state.hiddenPassword ? { display: 'none' } : {};
+        const hideiconstyle = this.state.isHiddenPassword ? { display: 'none' } : {};
+        const showiconstyle = !this.state.isHiddenPassword ? { display: 'none' } : {};
 
-        if (this.state.signupSuccess)
+        if (this.state.isSignupSuccess)
             return <Redirect to={{
                 pathname: "/home", state: {
                     isLoggedIn: true
@@ -181,7 +181,7 @@ class SignupComponent extends React.Component {
                             <Form.Group controlId="formSignUpPassword">
                                 <Form.Label>Password</Form.Label>
                                 <InputGroup>
-                                    <Form.Control placeholder="Password" type={this.state.hiddenPassword ? "password" : "text"} value={this.state.password} onChange={this.handlePasswordChange} required />
+                                    <Form.Control placeholder="Password" type={this.state.isHiddenPassword ? "password" : "text"} value={this.state.password} onChange={this.handlePasswordChange} required />
                                     <InputGroup.Append>
                                         <InputGroup.Text onClick={this.togglePassword} style={showiconstyle}><i className="fa fa-eye" aria-hidden="true"></i></InputGroup.Text>
                                         <InputGroup.Text onClick={this.togglePassword} style={hideiconstyle}><i className="fa fa-eye-slash" aria-hidden="true"></i></InputGroup.Text>
@@ -205,10 +205,10 @@ class SignupComponent extends React.Component {
                     </Row>
                     <Row>
                         <Col>
-                            <Alert variant="success" className={!this.state.signupSuccess ? 'hidden' : ''}>
-                                {this.state.signupSuccess || SIGNUP_SUCCESS}
+                            <Alert variant="success" className={!this.state.isSignupSuccess ? 'hidden' : ''}>
+                                {this.state.isSignupSuccess || SIGNUP_SUCCESS}
                             </Alert>
-                            <Alert variant="danger" className={!this.state.signupError ? 'hidden' : ''}>
+                            <Alert variant="danger" className={!this.state.isSignupError ? 'hidden' : ''}>
                                 {this.state.errorMessage || SIGNUP_ERROR}
                             </Alert>
                         </Col>

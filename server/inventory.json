@@ -13,6 +13,13 @@
       "password": "asdsads",
       "mobile": "1232323443",
       "id": 2
+    },
+    {
+      "name": "kirti",
+      "email": "dfd@g.cmc",
+      "password": "123234",
+      "mobile": "3458734656",
+      "id": 3
     }
   ],
   "product": [
@@ -59,6 +66,18 @@
       "category": "Trouser",
       "image": "",
       "id": 7
+    },
+    {
+      "name": "multiple",
+      "quantity": "2343",
+      "price": "24324",
+      "description": "sdjf",
+      "category": "Laptop",
+      "image": [
+        "inv.jpeg",
+        "Screenshot 2020-06-24 at 3.55.00 PM.png"
+      ],
+      "id": 8
     }
   ],
   "sales": [

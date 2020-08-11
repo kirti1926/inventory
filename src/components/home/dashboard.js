@@ -18,7 +18,7 @@ class DashboardComponent extends React.Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getAllProducts();
         this.getSalesData();
     }
@@ -73,7 +73,7 @@ class DashboardComponent extends React.Component {
                     <br></br>
                     <br></br>
                     <div className="row">
-                        <div className="col">
+                        <div className="col" style={{borderRight : "6px solid gray"}}>
                             <Chart
                                 chartType="Bar"
                                 loader={<div>Loading Chart</div>}

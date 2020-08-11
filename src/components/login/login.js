@@ -40,7 +40,7 @@ class LoginComponent extends React.Component {
       hiddenPassword: true,
       email: '',
       password: '',
-      loginSuccess: false,
+      isLoginSuccess: false,
       errorMessage: false
     }
   }
@@ -76,8 +76,8 @@ class LoginComponent extends React.Component {
             errorResponse = err.response.data.message
 
           this.setState({
-            loginError: true,
-            loginSuccess: false,
+            isLoginError: true,
+            isLoginSuccess: false,
             errorMessage: errorResponse
           })
         })
@@ -95,7 +95,7 @@ class LoginComponent extends React.Component {
             cookie.save("user_name", user.name)
             cookie.save("user_id",user.id)
             count = count +1;
-            this.setState({ loginSuccess: true })
+            this.setState({ isLoginSuccess: true })
           }
 
         }
@@ -107,7 +107,7 @@ class LoginComponent extends React.Component {
   render() {
     const hideiconstyle = this.state.hiddenPassword ? { display: 'none' } : {};
     const showiconstyle = !this.state.hiddenPassword ? { display: 'none' } : {};
-    if (this.state.loginSuccess)
+    if (this.state.isLoginSuccess)
       return <Redirect to={{
         pathname: "/home", state: {
           isLoggedIn: true
@@ -161,10 +161,10 @@ class LoginComponent extends React.Component {
           <br />
           <Row>
             <Col>
-              <Alert variant="success" className={!this.state.loginSuccess ? 'hidden' : ''}>
+              <Alert variant="success" className={!this.state.isLoginSuccess ? 'hidden' : ''}>
                 {this.state.loginMessage || LOGIN_SUCCESS}
               </Alert>
-              <Alert variant="danger" className={!this.state.loginError ? 'hidden' : ''}>
+              <Alert variant="danger" className={!this.state.isLoginError ? 'hidden' : ''}>
                 {this.state.errorMessage || LOGIN_ERROR}
               </Alert>
             </Col>
