@@ -8,18 +8,11 @@
       "id": 1
     },
     {
-      "name": "kirti",
-      "email": "kirti@gmail.com",
-      "password": "12345678",
-      "mobile": "3458734656",
+      "name": "fsdf",
+      "email": "test@g.c",
+      "password": "asdsads",
+      "mobile": "1232323443",
       "id": 2
-    },
-    {
-      "name": "kirti",
-      "email": "ewae@f.v",
-      "password": "13232",
-      "mobile": "3458734656",
-      "id": 3
     }
   ],
   "product": [
@@ -28,7 +21,7 @@
       "quantity": "42",
       "price": "9000",
       "description": "i am test product",
-      "category": "test4",
+      "category": "mobile",
       "image": "inv.jpeg",
       "id": 3
     },
@@ -37,7 +30,7 @@
       "quantity": "12",
       "price": "1200",
       "description": "mobile test",
-      "category": "test4",
+      "category": "mobile",
       "id": 4
     },
     {
@@ -45,9 +38,150 @@
       "quantity": "55",
       "price": "12347",
       "description": "laptop test",
-      "category": "test5",
+      "category": "laptop",
       "image": "inv.jpeg",
       "id": 5
+    },
+    {
+      "name": "sfdsdfsdf",
+      "quantity": "234",
+      "price": "123123",
+      "description": "ewsf",
+      "category": "Tshirt",
+      "image": "",
+      "id": 6
+    },
+    {
+      "name": "sfdsdfsdf",
+      "quantity": "23234",
+      "price": "12323",
+      "description": "ewsf",
+      "category": "Trouser",
+      "image": "",
+      "id": 7
+    }
+  ],
+  "sales": [
+    {
+      "id": 1,
+      "date": "01-08-2020",
+      "quantity": 1551,
+      "value": 210000,
+      "Mobile": 230,
+      "Trouser": 233,
+      "Tshirt": 234,
+      "Laptop": 120
+    },
+    {
+      "id": 2,
+      "date": "02-08-2020",
+      "total quantity": 1678,
+      "total value": 159000,
+      "Formals": 330,
+      "Mobile": 240,
+      "Trouser": 350,
+      "Tshirt": 135,
+      "Laptop": 321
+    },
+    {
+      "id": 3,
+      "date": "03-08-2020",
+      "total quantity": 2508,
+      "total value": 212000,
+      "Formals": 321,
+      "Mobile": 356,
+      "Trouser": 421,
+      "Tshirt": 765,
+      "Laptop": 432
+    },
+    {
+      "id": 4,
+      "date": "04-08-2020",
+      "total quantity": 1745,
+      "total value": 162000,
+      "Formals": 231,
+      "Mobile": 435,
+      "Trouser": 125,
+      "Tshirt": 421,
+      "Laptop": 312
+    },
+    {
+      "id": 5,
+      "date": "05-08-2020",
+      "total quantity": 1871,
+      "total value": 18300,
+      "Formals": 432,
+      "Mobile": 421,
+      "Trouser": 231,
+      "Tshirt": 123,
+      "Laptop": 321,
+      "": 343
+    },
+    {
+      "id": 6,
+      "date": "06-08-2020",
+      "total quantity": 1638,
+      "total value": 145300,
+      "Formals": 230,
+      "Mobile": 233,
+      "Trouser": 321,
+      "Tshirt": 421,
+      "Laptop": 234
+    },
+    {
+      "id": 7,
+      "date": "07-08-2020",
+      "total quantity": 1705,
+      "total value": 159622,
+      "Formals": 213,
+      "Mobile": 322,
+      "Trouser": 432,
+      "Tshirt": 213,
+      "Laptop": 231
+    },
+    {
+      "id": 8,
+      "date": "08-08-2020",
+      "total quantity": 1678,
+      "total value": 143960,
+      "Formals": 323,
+      "Mobile": 231,
+      "Trouser": 421,
+      "Tshirt": 198,
+      "Laptop": 270
+    },
+    {
+      "id": 9,
+      "date": "09-08-2020",
+      "total quantity": 1499,
+      "total value": 112560,
+      "Formals": 230,
+      "Mobile": 233,
+      "Trouser": 234,
+      "Tshirt": 134,
+      "Laptop": 434
+    },
+    {
+      "id": 10,
+      "date": "10-08-2020",
+      "total quantity": 1783,
+      "total value": 182000,
+      "Formals": 351,
+      "Mobile": 233,
+      "Trouser": 234,
+      "Tshirt": 212,
+      "Laptop": 432
+    },
+    {
+      "id": 11,
+      "date": "11-08-2020",
+      "total quantity": 1822,
+      "total value": 192000,
+      "Formals": 230,
+      "Mobile": 285,
+      "Trouser": 234,
+      "Tshirt": 421,
+      "Laptop": 231
     }
   ]
 }

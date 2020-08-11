@@ -11,3 +11,108 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Add product */
+
+.product-form{
+  width: 40%;
+}
+
+/* header */
+
+.login-link{
+  color: rgba(0,0,0,.5) !important;
+}
+.icon{
+  color: whitesmoke !important;
+}
+
+.link{
+color: whitesmoke;
+}
+
+
+/* login header */
+
+.icon-header i{
+  color: black !important;
+}
+
+/* dashboard */
+
+.header{
+  margin-top: 4%;
+}
+
+.row{
+margin: 0 !important;
+}
+
+
+.product-link{
+  float: right !important;
+  font-weight: 600;
+  margin-right: 1%;
+}
+.col{
+  margin: 0;
+}
+
+.main-content h3{
+ text-align: center;
+ margin-top: 2px;
+ margin-bottom: 2px;
+}
+
+.user-text{
+  font-size: larger;
+  margin-left: 1%;
+  font-weight: bold !important;
+}
+
+/* Welcome Page */
+
+p{
+  font-weight: bold;
+  line-height: 1.5 rem;
+}
+
+img{
+  width:35%;
+}
+
+/* Login */
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa-eye {
+  color: black !important;
+}
+.login-form{
+  width: 40%;
+}
+
+.hidden{
+  display: none !important;
+}
+
+/* Product List */
+
+.card-deck{
+  margin: 5%;
+}
+
+/* Product detail */
+
+.fa-pencil-square-o,.fa-trash-o{
+  color: white !important;
+}
+
+/* Signup */
+.signup-form {
+  width: 50%;
+}

@@ -1,8 +1,6 @@
 import React from 'react';
-import '../css/login_signup_footer.css'
 
 class LoginSignupFooter extends React.Component {
-    state = {}
     render() {
         return <div>
             <hr></hr>

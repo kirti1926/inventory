@@ -1,9 +1,8 @@
 import React from 'react';
-import '../css/product_detail.css'
 
 class ProductDetail extends React.Component {
     constructor(props){
-        super()
+        super(props)
     }
 
     editProduct =()=>{

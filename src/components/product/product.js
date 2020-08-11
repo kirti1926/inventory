@@ -1,15 +1,13 @@
 import React from 'react';
-import { HeaderComponent } from './header';
-import '../css/product.css'
+import  HeaderComponent  from '../header/header';
 import Axios from 'axios';
 import ProductDetail from './product_detail';
 import { Table, Container, Form, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import FooterComponent from './footer';
 
 class Product extends React.Component {
     constructor(props) {
-        super()
+        super(props)
         this.state = {
             products: [],
             productsError: '',
@@ -68,13 +66,15 @@ class Product extends React.Component {
         return <React.Fragment>
             <HeaderComponent></HeaderComponent>
             <Container style={{ marginTop: '6%', display: "block" }}>
-                <Row style={{ display: "inline-block" }}>
-                    <Col style={{ float: "right" }}>
+                <Row >
+                    <Col>
                         <h4>Search Product</h4>
                         <Form inline>
                             <Form.Control type="text" placeholder="Search" onChange={this.getSearchedProducts} />
+                            <Link to="/product" className="product-link" ><u style={{marginLeft:"20px"}}> Add Product</u></Link>
                         </Form><br></br>
                     </Col>
+                
                 </Row>
                 <Row>
                     <Col>
@@ -109,7 +109,6 @@ class Product extends React.Component {
                     <Link to="/product">Add Product</Link>
                 </div>
             </Container>
-            <FooterComponent></FooterComponent>
         </React.Fragment>
     }
 }

@@ -1,10 +1,8 @@
 import React from 'react';
 import { Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import '../css/login_signup_header.css'
 
 class LoginSignupHeader extends React.Component {
-    state = {}
     render() {
         return <div>
             <Navbar>

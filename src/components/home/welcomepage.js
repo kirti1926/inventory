@@ -1,7 +1,6 @@
 import React from 'react';
-import LoginSignupHeader from './login_signup_header';
-import LoginSignupFooter from './login_signup_footer';
-import '../css/welcomepage.css';
+import LoginSignupHeader from '../header/login_signup_header';
+import LoginSignupFooter from '../footer/login_signup_footer';
 
 class WelcomePage extends React.Component {
     render() {

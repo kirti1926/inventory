@@ -1,9 +1,8 @@
 import React from 'react';
-import LoginSignupHeader from './login_signup_header';
-import LoginSignupFooter from './login_signup_footer';
+import LoginSignupHeader from '../header/login_signup_header';
+import LoginSignupFooter from '../footer/login_signup_footer';
 import { Container, Col, Row, Form, InputGroup, Button, Alert } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
-import '../css/login.css'
 import Axios from 'axios';
 import cookie from 'react-cookies'
 

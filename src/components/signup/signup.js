@@ -1,11 +1,10 @@
 import React from 'react';
-import LoginSignupHeader from './login_signup_header';
-import LoginSignupFooter from './login_signup_footer';
-import '../css/signup.css'
 import { Form, Row, Col, Container, InputGroup, Button, Alert } from 'react-bootstrap';
 import Axios from 'axios';
 import cookie from 'react-cookies'
 import { Redirect } from 'react-router-dom';
+import LoginSignupHeader from '../header/login_signup_header';
+import LoginSignupFooter from '../footer/login_signup_footer';
 
 const SIGNUP_SUCCESS = "Signup successful."
 
@@ -13,15 +12,19 @@ const SIGNUP_ERROR = "Please try again later."
 
 function validate(state) {
     const errors = [];
-  
+
     if (state.name === "") {
 
         errors.push("Name is required")
     }
-  
+
     if (state.mobile === "") {
 
         errors.push("Mobile Number is required")
+    }
+
+    if (state.mobile.length !== 10) {
+        errors.push("length must be 10")
     }
     if (state.email.length < 5) {
 
@@ -46,7 +49,7 @@ function validate(state) {
 
 class SignupComponent extends React.Component {
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             name: '',
             email: '',
@@ -54,7 +57,10 @@ class SignupComponent extends React.Component {
             hiddenPassword: true,
             password: '',
             signupSuccess: false,
-            signupError: false
+            signupError: false,
+            regexp: /^[0-9\b]+$/,
+            nameerror : '',
+            mobileerror : ''
         }
     }
 
@@ -66,10 +72,11 @@ class SignupComponent extends React.Component {
     }
     handleNameChange = (e) => {
         if (e.target.value.match("^[A-Za-z]*$") != null) {
+            this.setState({ nameerror: '' })
             this.setState({ name: e.target.value })
         }
         else {
-            this.setState({ error: 'Enter a valid firstname' })
+            this.setState({ nameerror: 'Enter a valid firstname' })
         }
 
     }
@@ -77,7 +84,12 @@ class SignupComponent extends React.Component {
         this.setState({ dob: e.target.value })
     }
     handleMobileChange = (event) => {
-        this.setState({ mobile: event.target.value })
+        if (event.target.value === "" || this.state.regexp.test(event.target.value)) {
+            this.setState({ mobileerror: '' })
+            this.setState({ mobile: event.target.value })
+        } else {
+            this.setState({ mobileerror: 'Enter numbers only' })
+        }
     }
     togglePassword = (e) => {
         this.setState({ hiddenPassword: !this.state.hiddenPassword });
@@ -87,9 +99,9 @@ class SignupComponent extends React.Component {
         event.preventDefault();
         var validateState = validate(this.state)
         event.target.className += " was-validated";
-        if(validateState.length > 0)
-        return
-        else{
+        if (validateState.length > 0)
+            return
+        else {
             var requestBody = {
                 name: this.state.name,
                 email: this.state.email,
@@ -97,31 +109,31 @@ class SignupComponent extends React.Component {
                 mobile: this.state.mobile,
                 inventory_name: this.state.inventory_name
             }
-    
-            Axios.post('http://localhost:3000/user',requestBody)
-            .then(response => {
-                if (response.status === 201) {
-                    this.setState({
-                        signupSuccess: true,
-                        signupError: false,
-                        signupMessage: response.statusText
-                    })
-                    cookie.save('user_name', this.state.name)
-                }
-            })
-            .catch(err => {
-                var errorResponse = '';
-                        if (err.response)
-                            errorResponse = err.response.data.message
-                        else
-                            errorResponse = SIGNUP_ERROR
-    
+
+            Axios.post('http://localhost:3000/user', requestBody)
+                .then(response => {
+                    if (response.status === 201) {
                         this.setState({
-                            signupError: true,
-                            signupSuccess: false,
-                            errorMessage: errorResponse
+                            signupSuccess: true,
+                            signupError: false,
+                            signupMessage: response.statusText
                         })
-            })
+                        cookie.save('user_name', this.state.name)
+                    }
+                })
+                .catch(err => {
+                    var errorResponse = '';
+                    if (err.response)
+                        errorResponse = err.response.data.message
+                    else
+                        errorResponse = SIGNUP_ERROR
+
+                    this.setState({
+                        signupError: true,
+                        signupSuccess: false,
+                        errorMessage: errorResponse
+                    })
+                })
         }
     }
 
@@ -130,11 +142,11 @@ class SignupComponent extends React.Component {
         const showiconstyle = !this.state.hiddenPassword ? { display: 'none' } : {};
 
         if (this.state.signupSuccess)
-        return <Redirect to={{
-            pathname: "/home", state: {
-                isLoggedIn: true
-            }
-        }} />
+            return <Redirect to={{
+                pathname: "/home", state: {
+                    isLoggedIn: true
+                }
+            }} />
         return <React.Fragment>
             <LoginSignupHeader></LoginSignupHeader>
             <Container>
@@ -151,6 +163,7 @@ class SignupComponent extends React.Component {
                                 <Form.Label>Name</Form.Label>
                                 <Form.Control type="text" placeholder="Enter Name" onChange={this.handleNameChange} required />
                                 <div className="invalid-feedback">Please provide Name</div>
+                                <div className={this.state.nameerror !== '' ? "invalid-feedback" : "hidden"}>{this.state.nameerror}</div>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -168,7 +181,7 @@ class SignupComponent extends React.Component {
                             <Form.Group controlId="formSignUpPassword">
                                 <Form.Label>Password</Form.Label>
                                 <InputGroup>
-                                    <Form.Control placeholder="Password" type={this.state.hiddenPassword ? "password" : "text"}  value={this.state.password} onChange={this.handlePasswordChange} required />
+                                    <Form.Control placeholder="Password" type={this.state.hiddenPassword ? "password" : "text"} value={this.state.password} onChange={this.handlePasswordChange} required />
                                     <InputGroup.Append>
                                         <InputGroup.Text onClick={this.togglePassword} style={showiconstyle}><i className="fa fa-eye" aria-hidden="true"></i></InputGroup.Text>
                                         <InputGroup.Text onClick={this.togglePassword} style={hideiconstyle}><i className="fa fa-eye-slash" aria-hidden="true"></i></InputGroup.Text>
@@ -183,8 +196,9 @@ class SignupComponent extends React.Component {
                         <Col>
                             <Form.Group controlId="formSignUpMobile">
                                 <Form.Label>Contact Number</Form.Label>
-                                <Form.Control placeholder="Contact Number" type="number" onKeyDown={(evt) => (evt.key === 'e' || evt.key === '.' || evt.key === '+') && evt.preventDefault()} onChange={this.handleMobileChange} required />
+                                <Form.Control placeholder="Contact Number" type="text" minLength="10" value={this.state.mobile} onChange={this.handleMobileChange} required />
                                 <div className="invalid-feedback">Please enter your contact number</div>
+                                <div className={this.state.mobileerror !== '' ? "invalid-feedback" : "hidden"}>{this.state.mobileerror}</div>
                             </Form.Group>
                         </Col>
 
