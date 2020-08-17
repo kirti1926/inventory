@@ -17,8 +17,7 @@ class DashboardComponent extends React.Component {
             products: []
         }
     }
-
-    componentDidMount() {
+    componentWillMount() {
         this.getAllProducts();
         this.getSalesData();
     }
@@ -67,13 +66,15 @@ class DashboardComponent extends React.Component {
             <div style={{ marginTop: "5%" }} className="main-content">
                 <div>
                     <span className="user-text"><u>Welcome {this.state.userName}</u></span>
-                    <Link to="/product" className="product-link"><u> Add Product</u></Link>
+                    <Link to="/product"  className="product-link btn btn-outline-primary">
+                        <span>Add Product</span>
+                    </Link>
                 </div>
                 <div>
                     <br></br>
                     <br></br>
                     <div className="row">
-                        <div className="col" style={{borderRight : "6px solid gray"}}>
+                        <div className="col-sm">
                             <Chart
                                 chartType="Bar"
                                 loader={<div>Loading Chart</div>}
@@ -85,7 +86,7 @@ class DashboardComponent extends React.Component {
                             <br></br>
                             <h3><u>Product Sales Chart</u></h3>
                         </div>
-                        <div className="col">
+                        <div className="col-sm">
                             <Chart
                                 chartType="PieChart"
                                 loader={<div>Loading Chart</div>}

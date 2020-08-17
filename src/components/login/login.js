@@ -153,11 +153,6 @@ class LoginComponent extends React.Component {
             </Col>
 
           </Row>
-          <Row>
-            <Col>
-              <a href="/">Forgot Password</a>
-            </Col>
-          </Row>
           <br />
           <Row>
             <Col>

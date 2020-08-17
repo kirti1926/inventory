@@ -145,7 +145,7 @@ class AddEditProductComponent extends React.Component {
                         <Col>
                         <br></br>
                             <h3 className={this.state.isEditing === true ? "hidden" : ""}><u>Add Product</u></h3>
-                            <h3 className={this.state.isEditing === false ? "hidden" : ""}><u>Edit Product</u></h3>
+                            <h3 className={this.state.isEditing === false ? "hidden" : ""}><u>Update Product</u></h3>
                         </Col>
                     </Row>
                     <br></br>

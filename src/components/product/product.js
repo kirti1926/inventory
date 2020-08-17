@@ -1,5 +1,5 @@
 import React from 'react';
-import  HeaderComponent  from '../header/header';
+import HeaderComponent from '../header/header';
 import Axios from 'axios';
 import ProductDetail from './product_detail';
 import { Table, Container, Form, Row, Col } from 'react-bootstrap';
@@ -11,8 +11,9 @@ class Product extends React.Component {
         this.state = {
             products: [],
             productsError: '',
-            prevProductData:[],
-            searchValue: ''
+            prevProductData: [],
+            searchValue: '',
+            isFilterDataEmpty: false
         }
     }
 
@@ -38,12 +39,19 @@ class Product extends React.Component {
         if (event.target.value === "") {
             this.setState({ products: this.state.prevProductData })
         } else {
-            let searchData = this.state.products.filter(prod => {
-                return prod.name.toLowerCase().match(event.target.value.toLowerCase())
+            this.setState({ searchValue: event.target.value })
+            let filterdData = this.state.products.filter(data => {
+                return Object.values(data).join(" ").toLowerCase().match(event.target.value.toLowerCase())
             })
-            this.setState({ products: searchData })
+            console.log('flter', typeof filterdData)
+            if (filterdData.length === 0) {
+                this.setState({ isFilterDataEmpty: true })
+                this.setState({ products: this.state.prevProductData })
+            } else {
+                this.setState({ isFilterDataEmpty: false })
+                this.setState({ products: filterdData })
+            }
         }
-
     }
 
     deleteproduct = (id) => {
@@ -71,43 +79,49 @@ class Product extends React.Component {
                         <h4>Search Product</h4>
                         <Form inline>
                             <Form.Control type="text" placeholder="Search" onChange={this.getSearchedProducts} />
-                            <Link to="/product" className="product-link" ><u style={{marginLeft:"20px"}}> Add Product</u></Link>
+                            <Link to="/product" className="notification">
+                                <span>Add Product</span>
+                                <span className="badge">{this.state.products.length}</span>
+                            </Link>
                         </Form><br></br>
                     </Col>
-                
+
+                </Row>
+                <Row className={!this.state.isFilterDataEmpty ? "hidden" : ""}>
+                    <Col>
+                        <div >
+                            <u style={{ padding: '1px' }}>No data available for {this.state.searchValue}</u>
+                        </div><br></br>
+                    </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <Table striped bordered hover variant="dark" className={this.state.products.length === 0 ? "hidden" : ""}>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Product Name</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Category</th>
-                                    <th colSpan="4">Actions</th>
-                                </tr>
-                            </thead>
-                            {
-                                this.state.products.map(product => {
-                                    return (
-                                        <ProductDetail key={product.id} prod={product}
-                                            editProdId={this.editProduct}
-                                            deleteProdId={this.deleteproduct}></ProductDetail>
-                                    )
-                                })
+                        <div className="table-responsive-lg">
+                            <Table striped bordered hover variant="dark" className={this.state.products.length === 0 ? "hidden" : ""}>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Product Name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Category</th>
+                                        <th colSpan="4">Actions</th>
+                                    </tr>
+                                </thead>
+                                {
+                                    this.state.products.map(product => {
+                                        return (
+                                            <ProductDetail key={product.id} prod={product}
+                                                editProdId={this.editProduct}
+                                                deleteProdId={this.deleteproduct}></ProductDetail>
+                                        )
+                                    })
 
-                            }
-                        </Table>
+                                }
+                            </Table>
+                        </div>
                     </Col>
                 </Row>
-
-
-                <div className={this.state.products.length > 0 ? "hidden" : ""}>
-                    <u style={{ padding: '1px' }}>No products available.Please add some products</u><br></br>
-                    <Link to="/product">Add Product</Link>
-                </div>
             </Container>
         </React.Fragment>
     }

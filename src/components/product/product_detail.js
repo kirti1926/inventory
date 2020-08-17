@@ -1,9 +1,6 @@
 import React from 'react';
 
 class ProductDetail extends React.Component {
-    constructor(props){
-        super(props)
-    }
 
     editProduct =()=>{
         this.props.editProdId(this.props.prod)
