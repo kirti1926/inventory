@@ -35,7 +35,7 @@
       "quantity": "212",
       "price": "12",
       "description": "123mobile test",
-      "category": "mobile",
+      "category": "Mobile",
       "image": [],
       "id": 4
     },
@@ -44,7 +44,7 @@
       "quantity": "55",
       "price": "12347",
       "description": "laptop test",
-      "category": "laptop",
+      "category": "Laptop",
       "image": "inv.jpeg",
       "id": 5
     },
@@ -97,6 +97,24 @@
       "category": "Laptop",
       "image": [],
       "id": 10
+    },
+    {
+      "name": "sad",
+      "quantity": "34",
+      "price": "123",
+      "description": "ewsf",
+      "category": "Trouser",
+      "image": [],
+      "id": 11
+    },
+    {
+      "name": "sfdsdfsdf",
+      "quantity": "34",
+      "price": "123",
+      "description": "ewsf",
+      "category": "Mobile",
+      "image": [],
+      "id": 12
     }
   ],
   "sales": [

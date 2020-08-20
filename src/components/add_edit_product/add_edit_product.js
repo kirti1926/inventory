@@ -31,7 +31,7 @@ class AddEditProductComponent extends React.Component {
                 productName: data.name || '',
                 description: data.description || '',
                 quantity: data.quantity || '',
-                category: data.category || '',
+                category: data.category || 'Mobile',
                 productImage: data.image || [],
                 price: data.price || '',
                 isProductError: false,
@@ -43,7 +43,7 @@ class AddEditProductComponent extends React.Component {
                 productName: '',
                 description: '',
                 quantity: '',
-                category: '',
+                category: 'Mobile',
                 productImage: [],
                 isProductError: false,
                 isEditing: false,
@@ -83,7 +83,7 @@ class AddEditProductComponent extends React.Component {
         event.preventDefault();
         var validate = validateProduct(this.state)
         event.target.className += " was-validated";
-
+        console.log(validate)
         if (validate.length > 0)
             return
         else {
